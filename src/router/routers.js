@@ -2,6 +2,8 @@ import Home from '@/components/HomePage.vue'
 import Signup from '@/components/Signup.vue'
 import Login from '@/components/Login.vue'
 import UpdateRestaurant from '@/components/UpdateRestaurant.vue'
+import AddRestaurant from '@/components/AddRestaurant.vue'
+import store from '@/store/store.js'
 
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -11,7 +13,8 @@ const routes = [
         component: Home,
         path: '/',
         meta: {
-            title: 'Home Page'
+            title: 'Home Page',
+            requiresAuth: true,
         }
     },
     {
@@ -31,6 +34,14 @@ const routes = [
         }
     },
     {
+        name: 'AddRestaurant',
+        component: AddRestaurant,
+        path: '/add-restaurent',
+        meta: {
+            title: 'Add Restaurant'
+        }
+    },
+    {
         name: 'updateRestaurant',
         component: UpdateRestaurant,
         path: '/update-restaurant/:id',
@@ -47,6 +58,15 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     document.title = `${to.meta.title} | Restaurent Application`;
+    let user = localStorage.getItem(store.state.userNameLocalStorage);
+    if(to.path === '/login' && user) {
+        next('/')
+        return
+    }
+    if(to.matched.some(record => record.meta.requiresAuth) && !user) {
+        next('/login')
+        return
+    }
     next()
 })
 

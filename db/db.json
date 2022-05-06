@@ -1,0 +1,282 @@
+{
+  "users": [
+    {
+      "name": "user1",
+      "email": "user1@gmail.com",
+      "password": "user10123",
+      "id": 1
+    },
+    {
+      "name": "test1",
+      "email": "test1@gmail.com",
+      "password": "test123",
+      "id": 2
+    },
+    {
+      "name": "test2",
+      "email": "test2@gmail.com",
+      "password": "test3",
+      "id": 3
+    },
+    {
+      "name": "salman",
+      "email": "salman1",
+      "password": "salman@123",
+      "id": 4
+    },
+    {
+      "name": "rehana",
+      "email": "rehana@123.com",
+      "password": "rehan@sal",
+      "id": 5
+    },
+    {
+      "name": "usertest",
+      "email": "usertest@dsfadf.com",
+      "password": "usertest",
+      "id": 6
+    },
+    {
+      "name": "",
+      "email": "admin",
+      "password": "admin01",
+      "id": 7
+    },
+    {
+      "name": "",
+      "email": "admin",
+      "password": "admin01",
+      "id": 8
+    },
+    {
+      "name": "",
+      "email": "admin",
+      "password": "admin01",
+      "id": 9
+    },
+    {
+      "name": "",
+      "email": "",
+      "password": "",
+      "id": 10
+    },
+    {
+      "name": "ssdf",
+      "email": "dfgsadf",
+      "password": "dsaasdf",
+      "id": 11
+    },
+    {
+      "name": "",
+      "email": "admin",
+      "password": "admin01",
+      "id": 12
+    },
+    {
+      "name": "user1",
+      "email": "user1@gmail.com",
+      "password": "user10123",
+      "id": 13
+    },
+    {
+      "name": "",
+      "email": "admin",
+      "password": "admin01",
+      "id": 14
+    },
+    {
+      "name": "ss",
+      "email": "salraza1993@gmail.com",
+      "password": "s",
+      "id": 15
+    },
+    {
+      "name": "",
+      "email": "admin",
+      "password": "admin01",
+      "id": 16
+    },
+    {
+      "name": "",
+      "email": "admin",
+      "password": "admin01",
+      "id": 17
+    },
+    {
+      "name": "sss",
+      "email": "",
+      "password": "",
+      "id": 18
+    },
+    {
+      "name": "",
+      "email": "admin",
+      "password": "admin01",
+      "id": 19
+    },
+    {
+      "name": "",
+      "email": "",
+      "password": "admin01",
+      "id": 20
+    },
+    {
+      "name": "ss",
+      "email": "",
+      "password": "",
+      "id": 21
+    },
+    {
+      "name": "s",
+      "email": "",
+      "password": "",
+      "id": 22
+    },
+    {
+      "name": "ssadfsadf",
+      "email": "admin",
+      "password": "admin01",
+      "id": 23
+    },
+    {
+      "name": "sadfasfds",
+      "email": "",
+      "password": "",
+      "id": 24
+    },
+    {
+      "name": "sadfsafd",
+      "email": "admin",
+      "password": "admin01",
+      "id": 25
+    },
+    {
+      "name": "",
+      "email": "admin",
+      "password": "admin01",
+      "id": 26
+    },
+    {
+      "name": "",
+      "email": "admin",
+      "password": "admin01",
+      "id": 27
+    },
+    {
+      "name": "sadfas",
+      "email": "asdfsa",
+      "password": "asdfsadf",
+      "id": 28
+    },
+    {
+      "name": "",
+      "email": "admin",
+      "password": "admin01",
+      "id": 29
+    },
+    {
+      "name": "",
+      "email": "admin",
+      "password": "admin01",
+      "id": 30
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123456",
+      "id": 31
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123456",
+      "id": 32
+    },
+    {
+      "name": "test1",
+      "email": "test1@gmail.com",
+      "password": "123456",
+      "id": 33
+    },
+    {
+      "name": "testing2",
+      "email": "test12@gmail.com",
+      "password": "12345678",
+      "id": 34
+    },
+    {
+      "name": "sadf",
+      "email": "tessdft1@gmail.com",
+      "password": "123456789",
+      "id": 35
+    },
+    {
+      "name": "Salman Raza",
+      "email": "salman@gmail.com",
+      "password": "123456789",
+      "id": 36
+    },
+    {
+      "name": "sss",
+      "email": "salmans@gmail.com",
+      "password": "123456789",
+      "id": 37
+    },
+    {
+      "name": "lkj",
+      "email": "khioh@gmail.com",
+      "password": "123456789",
+      "id": 38
+    }
+  ],
+  "restaurants": [
+    {
+      "name": "KFC2s",
+      "contact": "7838367864",
+      "address": "Al Rigga Road, Deira, Dubai",
+      "id": 6
+    },
+    {
+      "name": "KFC",
+      "contact": "+971 551 3569",
+      "address": "Al Rigga Road, Deira, Dubai",
+      "id": 7
+    },
+    {
+      "name": "KFC",
+      "contact": "+971 551 3569",
+      "address": "Al Rigga Road, Deira, Dubai",
+      "id": 8
+    },
+    {
+      "name": "KFC",
+      "contact": "+971 551 3569",
+      "address": "Al Rigga Road, Deira, Dubai",
+      "id": 9
+    },
+    {
+      "name": "KFC",
+      "contact": "+971 551 3569",
+      "address": "Al Rigga Road, Deira, Dubai",
+      "id": 10
+    },
+    {
+      "name": "New Restaurent",
+      "contact": "78646464",
+      "address": "Sharjah",
+      "id": 12
+    },
+    {
+      "name": "New Restaurent 2",
+      "contact": "7893+56464",
+      "address": "646464",
+      "id": 13
+    },
+    {
+      "name": "Test New",
+      "contact": " 3q92p45789475",
+      "address": "sf;ldkj afs;jl",
+      "id": 14
+    }
+  ]
+}

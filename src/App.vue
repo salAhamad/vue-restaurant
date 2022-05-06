@@ -1,19 +1,12 @@
 <template>
   <router-view></router-view>
-  <!-- <HomePage /> -->
-  <!-- <Signup /> -->
 </template>
 
 <script>
-// import HomePage from './components/HomePage.vue'
-// import Signup from './components/Signup.vue'
 
 export default {
   name: 'App',
-  components: {
-    // HomePage,
-    // Signup
-  }
+  components: {},
 }
 </script>
 

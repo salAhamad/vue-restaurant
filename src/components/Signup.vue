@@ -40,33 +40,47 @@
         },
 
         methods: {
-            async signUp() {
-                if(this.name == "" && this.email == "" && this.password == "") {
+            async signUp() {                
+                if(this.name !== "" && this.email !== "" && this.password !== "") {
+
+                    let allUsers = await axios.get('http://localhost:3000/users');
+                    const userExistance = allUsers.data.some(user => user.email == this.email)
+                                        
+                    if(userExistance) {
+                        this.error = true
+                        this.errorMessage = 'The email Id is already exist. Please Register with another email'
+                        return
+                    } else if(this.password.length < 8) {
+                        this.error = true
+                        this.errorMessage = 'The password length can not be less than 8 characters'
+                        return
+                    } else {
+                        let result = await axios.post('http://localhost:3000/users', {
+                            name: this.name,
+                            email: this.email,
+                            password: this.password,
+                        })
+                        if(result.status == 201) {
+                            localStorage.setItem(this.$store.state.userNameLocalStorage, JSON.stringify(result.data.name))
+                            this.$router.push({name: 'Home'})
+                        } else {
+                            this.name = ''
+                            this.email = ''
+                            this.password = ''
+                            this.error = true
+                            this.errorMessage = 'Something went wrong! Try again'
+                        }        
+                        return
+                    }
+
+                } else {
                     this.error = true
                     this.errorMessage = 'Please, fill out required fields'
-                    console.log(this.name, this.email, this.password, this.password.length)
-                    return
-                } else {
-                    let result = await axios.post('http://localhost:3000/users', {
-                        name: this.name,
-                        email: this.email,
-                        password: this.password,
-                    })
-                    if(result.status == 201) {
-                        localStorage.setItem('user-info', JSON.stringify(result.data))
-                        this.$router.push({name: 'Home'})
-                    } else {
-                        this.name = ''
-                        this.email = ''
-                        this.password = ''
-                        this.error = true
-                        this.errorMessage = 'Something went wrong! Try again'
-                    }    
                 }
             },
         },
         mounted() {
-            let user = localStorage.getItem('user-info');
+            let user = localStorage.getItem(this.$store.state.userNameLocalStorage);
             if(user) this.$router.push({name: 'Home'});
         }
     }

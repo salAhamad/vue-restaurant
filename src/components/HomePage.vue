@@ -16,13 +16,13 @@
           </thead>
           <tbody>
               <tr v-show="!notEmpty"  v-for="(restaurant, index) in restaurants" :key="index">
-                  <td>{{restaurant.id}}</td>
+                  <td>{{index + 1}}</td>
                   <td>{{restaurant.name}}</td>
                   <td>{{restaurant.contact}}</td>
                   <td>{{restaurant.address}}</td>
                   <td>
-                      <router-link :to="`/update-restaurant/${restaurant.id}`" class="btn btn-sm btn-outline-dark mx-1" style="min-width: 60px">Edit / Update</router-link>
-                      <button @click="deleteRestaurant(restaurant.id)" class="btn btn-sm btn-outline-danger mx-1" style="min-width: 60px">Delete</button>
+                      <router-link :to="`/update-restaurant/${restaurant.id}`" class="btn btn-sm py-0 btn-outline-dark mx-1" style="min-width: 60px">Edit / Update</router-link>
+                      <button @click="deleteRestaurant(restaurant.id)" class="btn btn-sm py-0 btn-outline-danger mx-1" style="min-width: 60px">Delete</button>
                   </td>
               </tr>
               <tr v-show="notEmpty">
@@ -45,7 +45,7 @@ export default {
   name: 'HomePage',
   data() {
     return {
-      userName: JSON.parse(localStorage.getItem('user-info')).name,
+      userName: JSON.parse(localStorage.getItem(this.$store.state.userNameLocalStorage)),
       restaurants: [],
       notEmpty: null,
     }
@@ -58,7 +58,6 @@ export default {
       this.$store.commit('setUserName', this.userName);
     },
     async deleteRestaurant(id) {
-      console.log(id)
       await axios.delete('http://localhost:3000/restaurants/'+id).then(res => this.restaurants = res.data).catch(err => console.log(err))
       this.loadData();
     },
@@ -69,7 +68,7 @@ export default {
     },
   },
   mounted() {
-    const user = localStorage.getItem('user-info');
+    const user = localStorage.getItem(this.$store.state.userNameLocalStorage);
     if(!user) {
       this.$router.push({name: 'Login'})
     }

@@ -7,9 +7,9 @@
                 </div>
                 <h3 class="text-center fw-bold mb-3 text-uppercase">Sign Up</h3>
                 <form action="">
-                    <input v-model="email" type="email" class="form-control mb-3" :class="{'is-invalid': error }" placeholder="Enter Email" required>
-                    <input v-model="password" type="password" class="form-control mb-3" :class="{'is-invalid': error }" placeholder="Enter Password" required>
-                    <small class="text-danger mb-3 d-block" v-show="error">{{errorMessage}}</small>
+                    <input v-model="email" type="email" class="form-control mb-3" :class="{'is-invalid': this.$store.state.error }" placeholder="Enter Email" required>
+                    <input v-model="password" type="password" class="form-control mb-3" :class="{'is-invalid': this.$store.state.error }" placeholder="Enter Password" required>
+                    <small class="text-danger mb-3 d-block" v-show="this.$store.state.error">{{this.$store.state.errorMessage}}</small>
                     <div class="col-auto text-center">
                         <button @click.prevent="signIn()" type="submit" class="btn btn-primary px-4">Login</button>
                     </div>
@@ -35,23 +35,31 @@
                 errorMessage: null,
             }
         },
-        methods: {
-            
-            async signIn() {
-                if(this.email == '' && this.password == '') {
-                    this.error = true
-                    this.errorMessage = 'Please, fill out required fields'
-                    return
-                } else {
-                    let result = await axios.get(`http://localhost:3000/users?email=${this.email}&pasword=${this.password}`)       
+        methods: {            
+            async signIn() {                
+                if(this.email !== '' && this.password !== '') {
+                    let allUsers = await axios.get('http://localhost:3000/users');
+                    const userExistance = allUsers.data.some(user => user.email == this.email)
+                    if( !userExistance ) {
+                        // this.error = true
+                        // this.errorMessage = `The provide email doesn't exit. Please, try with another email`
+                        // store.commit('formError', {true, 'asdfjsaldf'});
+                        
+                        let err = true;
+                        let errMsg = `The provide email doesn't exit. Please, try with another email`;
+                        this.$store.commit('formError', { err, errMsg});
+
+                        return
+                    }
+
+                    let result = await axios.get(`http://localhost:3000/users?email=${this.email}&pasword=${this.password}`)
                     if(result.status === 200 && result.data.length > 0) {
                         this.error = false
                         this.errorMessage = null
 
-                        localStorage.setItem('user-info', JSON.stringify(result.data[0]))
+                        localStorage.setItem(this.$store.state.userNameLocalStorage, JSON.stringify(result.data[0].name))
                         this.$router.push({name: 'Home'})
                         return
-
                     } else {
                         this.error = true
                         this.errorMessage = 'Something went wrong! Try again'
@@ -59,11 +67,15 @@
                         this.password = ''
                         return
                     }
+                } else {
+                    this.error = true
+                    this.errorMessage = 'Please, fill out required fields'
+                    return
                 }
             },
         },
         mounted() {
-            let user = localStorage.getItem('user-info');
+            let user = localStorage.getItem(this.$store.state.userNameLocalStorage);
             if(user) this.$router.push({name: 'Home'});
         }
     }

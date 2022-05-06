@@ -12,8 +12,7 @@
                 </div>
                 <div class="col-12 col-md-9">
                     <div class="text-end d-flex align-items-center justify-content-end">
-                        <button type="button" class="btn btn-outline-primary ms-2 btn-md-sm mb-0">Add Restaurant</button>
-                        <button type="button" class="btn btn-outline-secondary ms-2 btn-md-sm mb-0">Update Restaurant</button>
+                        <router-link to="/add-restaurent" class="btn btn-outline-primary ms-2 btn-md-sm mb-0">Add Restaurant</router-link>
                         <button @click.prevent="logout()" type="button" class="btn btn-outline-danger ms-2 btn-md-sm mb-0">Sign Out</button>
                     </div>
                 </div>
@@ -31,7 +30,7 @@ export default {
     },
     methods: {
         logout() {
-            localStorage.removeItem('user-info')
+            localStorage.removeItem(this.$store.state.userNameLocalStorage)
             this.$router.push({name: 'Login'})
         }
     },

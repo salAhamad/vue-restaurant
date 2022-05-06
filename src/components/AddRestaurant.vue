@@ -7,8 +7,8 @@
                 <input v-model="restaurant.name" type="text" class="form-control form-control-lg mb-3" :class="{'is-invalid': error }" placeholder="Restaurant Name">
                 <input v-model="restaurant.contact" type="text" class="form-control form-control-lg mb-3" :class="{'is-invalid': error }" placeholder="Contact Number">
                 <input v-model="restaurant.address" type="text" class="form-control form-control-lg mb-3" :class="{'is-invalid': error }" placeholder="Address">
-                <small class="text-danger mb-3 d-block" v-show="error">{{errorMessage}}</small>
-                <button @click.prevent="update(index)" class="btn btn-lg btn-primary mt-3">Save Changes</button>
+                <small class="text-danger mb-1 d-block text-start" v-show="error">{{errorMessage}}</small>
+                <button @click.prevent="add()" class="btn btn-lg btn-primary mt-3">Save Changes</button>
             </form>
         </div>
     </div>
@@ -29,30 +29,39 @@ export default {
         }
     },
     methods: {
-        async update() {
+        async add() {
             if(this.restaurant.name !== '' && this.restaurant.contact !== '' && this.restaurant.address !== '') {
-                const result = await axios.put(`http://localhost:3000/restaurants/${this.$route.params.id}`, {
+                const result = await axios.post('http://localhost:3000/restaurants', {
                     name: this.restaurant.name,
                     contact: this.restaurant.contact,
                     address: this.restaurant.address,
                 });
-                if(result.status === 200) this.$router.push({name: 'Home'})
+                if(result.status === 201) {
+                    this.$router.push({name: 'Home'})
+                }
                 this.error = false;
                 this.errorMessage = false;
             }
             this.error = true;
-            this.errorMessage = "All fields are mandary.";
+            this.errorMessage = 'All fields are mandatory';
         }
     },
     async mounted() {
-        let user = localStorage.getItem(this.$store.state.userNameLocalStorage);
-        if(!user) this.$router.push({name: 'Login'});
-        const result = await axios.get(`http://localhost:3000/restaurants/${this.$route.params.id}`, {
-            name: this.restaurant.name,
-            contact: this.restaurant.contact,
-            address: this.restaurant.address
-        });        
-        this.restaurant = result.data
     }
 }
 </script>
+<style lang="scss">
+    .updateRestaurantDetails {
+        background-color: #fff;
+        padding: calc(1rem + 2vw);
+        max-width: 500px;
+        margin-inline: auto;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(var(--bs-dark-rgb), 0.1);
+    }
+    .back-btn {
+        position: absolute;
+        top: 2vw;
+        left: 2vw;
+    }
+</style>
